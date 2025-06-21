@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-:root{
+
+:root {
   --base-clr: #11121a;
   --line-clr: #42434a;
   --hover-clr: #222533;
@@ -7,16 +8,19 @@
   --accent-clr: #5e63ff;
   --secondary-text-clr: #b0b3c1;
 }
-*{
+
+* {
   margin: 0;
   padding: 0;
 }
-html{
+
+html {
   font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5rem;
   scroll-behavior: smooth;
 }
-body{
+
+body {
   min-height: 100vh;
   min-height: 100dvh;
   background-color: var(--base-clr);
@@ -24,7 +28,8 @@ body{
   display: grid;
   grid-template-columns: auto 1fr;
 }
-#sidebar{
+
+#sidebar {
   box-sizing: border-box;
   height: 100vh;
   width: 250px;
@@ -41,30 +46,37 @@ body{
 
   z-index: 10000;
 }
-#sidebar.close{
+
+#sidebar.close {
   padding: 5px;
   width: 60px;
 }
-#sidebar ul{
+
+#sidebar ul {
   list-style: none;
 }
-#sidebar > ul > li:first-child{
+
+#sidebar>ul>li:first-child {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 16px;
-  .logo{
+
+  .logo {
     font-weight: 600;
   }
 }
-#sidebar ul li.active a{
+
+#sidebar ul li.active a {
   color: var(--accent-clr);
 
-  svg{
+  svg {
     fill: var(--accent-clr);
   }
 }
 
-#sidebar a, #sidebar .dropdown-btn, #sidebar .logo{
+#sidebar a,
+#sidebar .dropdown-btn,
+#sidebar .logo {
   border-radius: .5em;
   padding: .85em;
   text-decoration: none;
@@ -73,7 +85,8 @@ body{
   align-items: center;
   gap: 1em;
 }
-.dropdown-btn{
+
+.dropdown-btn {
   width: 100%;
   text-align: left;
   background: none;
@@ -81,38 +94,49 @@ body{
   font: inherit;
   cursor: pointer;
 }
-#sidebar svg{
+
+#sidebar svg {
   flex-shrink: 0;
   fill: var(--text-clr);
 }
-#sidebar a span, #sidebar .dropdown-btn span{
+
+#sidebar a span,
+#sidebar .dropdown-btn span {
   flex-grow: 1;
 }
-#sidebar a:hover, #sidebar .dropdown-btn:hover{
+
+#sidebar a:hover,
+#sidebar .dropdown-btn:hover {
   background-color: var(--hover-clr);
 }
-#sidebar .sub-menu{
+
+#sidebar .sub-menu {
   display: grid;
   grid-template-rows: 0fr;
   transition: 300ms ease-in-out;
 
-  > div{
+  >div {
     overflow: hidden;
   }
 }
-#sidebar .sub-menu.show{
+
+#sidebar .sub-menu.show {
   grid-template-rows: 1fr;
 }
-.dropdown-btn svg{
+
+.dropdown-btn svg {
   transition: 200ms ease;
 }
-.rotate svg:last-child{
+
+.rotate svg:last-child {
   rotate: 180deg;
 }
-#sidebar .sub-menu a{
+
+#sidebar .sub-menu a {
   padding-left: 2em;
 }
-#toggle-btn{
+
+#toggle-btn {
   margin-left: auto;
   padding: 1em;
   border: none;
@@ -120,43 +144,52 @@ body{
   background: none;
   cursor: pointer;
 
-  svg{
+  svg {
     transition: rotate 150ms ease;
   }
 }
-#toggle-btn:hover{
+
+#toggle-btn:hover {
   background-color: var(--hover-clr);
 }
 
-main{
+main {
   padding: min(30px, 7%);
 }
-main p{
+
+main p {
   color: var(--secondary-text-clr);
   margin-top: 5px;
   margin-bottom: 15px;
 }
-.container{
+
+.container {
   border: 1px solid var(--line-clr);
   border-radius: 1em;
   margin-bottom: 20px;
   padding: min(3em, 15%);
 
-  h2, p { margin-top: 1em }
+  h2,
+  p {
+    margin-top: 1em
+  }
 }
 
-@media(max-width: 800px){
-  body{
+@media(max-width: 800px) {
+  body {
     grid-template-columns: 1fr;
   }
-  main{
+
+  main {
     padding: 2em 1em 60px 1em;
   }
-  .container{
+
+  .container {
     border: none;
     padding: 0;
   }
-  #sidebar{
+
+  #sidebar {
     height: 60px;
     width: 100%;
     border-right: none;
@@ -166,7 +199,7 @@ main p{
     top: unset;
     bottom: 0;
 
-    > ul{
+    >ul {
       padding: 0;
       display: grid;
       grid-auto-columns: 60px;
@@ -174,10 +207,13 @@ main p{
       align-items: center;
       overflow-x: scroll;
     }
-    ul li{
+
+    ul li {
       height: 100%;
     }
-    ul a, ul .dropdown-btn{
+
+    ul a,
+    ul .dropdown-btn {
       width: 60px;
       height: 60px;
       padding: 0;
@@ -185,11 +221,13 @@ main p{
       justify-content: center;
     }
 
-    ul li span, ul li:first-child, .dropdown-btn svg:last-child{
+    ul li span,
+    ul li:first-child,
+    .dropdown-btn svg:last-child {
       display: none;
     }
 
-    ul li .sub-menu.show{
+    ul li .sub-menu.show {
       position: fixed;
       bottom: 60px;
       left: 0;
@@ -201,13 +239,15 @@ main p{
       display: flex;
       justify-content: center;
 
-      > div{
+      >div {
         overflow-x: auto;
       }
-      li{
+
+      li {
         display: inline-flex;
       }
-      a{
+
+      a {
         box-sizing: border-box;
         padding: 1em;
         width: auto;
@@ -225,6 +265,8 @@ main p{
   height: 80vh;
   overflow: hidden;
   border-radius: 20px;
+
+  transition: background-image 5s ease-in-out;
 }
 
 .animationcontainer {
@@ -235,7 +277,7 @@ main p{
   transition: filter 0.2s ease;
 }
 
-.animationpanel{
+.animationpanel {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -245,7 +287,7 @@ main p{
   border-radius: 4px;
 }
 
-.animationpanel.active{
+.animationpanel.active {
   flex: 3.5;
 }
 
@@ -275,16 +317,16 @@ main p{
   font-size: 1rem;
   border: 1px solid #181818;
   border-radius: 4px;
-  background: rgba(240,240,240,0.9);
+  background: rgba(240, 240, 240, 0.9);
 }
 
 .UpperMainContainer:has(.center-overlay:hover) .animationcontainer {
   filter: blur(4px);
 }
 
-#scrollIcon{
+#scrollIcon {
   height: 10vh;
-  background-size:contain;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   margin: 30px 0 30px 0;
@@ -295,19 +337,32 @@ main p{
   transition: opacity 0.5s ease-in-out;
 }
 
-.gridContainer{
+.gridContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   gap: 1rem;
 }
 
-.card{
+.card {
   height: 300px;
   position: relative;
   border-radius: 11px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease-in-out;
 }
 
-.cardBgImg{
+.card:hover {
+  transform: scale(1.05);
+}
+
+
+.card::before {
+  transform: scale(1.0);
+}
+
+
+.cardBgImg {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -321,7 +376,7 @@ main p{
 
 .CardFgText {
   position: absolute;
-  inset: 0;     
+  inset: 0;
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: auto 1fr auto auto auto;
@@ -331,26 +386,41 @@ main p{
     ". cardTitle       ."
     "temperaturText cardDetail cardText";
   color: white;
-  background: linear-gradient(
-      25deg,
+  background: linear-gradient(25deg,
       #000000 0%,
       transparent 50%,
-      #000000 100%
-    );
+      #000000 100%);
 }
 
-.CardFgText > img.weatherIcon {
+.CardFgText>img.weatherIcon {
   grid-area: weatherIcon;
   justify-self: end;
-  align-self: start;   
+  align-self: start;
   width: 80px;
-  padding: 20px;
+  animation:
+    iconBounce 2s ease-in-out 1s infinite;
+  background-color: rgb(255, 255, 255, 0.1);
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
-.CardFgText > p.temperaturText {
+@keyframes iconBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.CardFgText>p.temperaturText {
   grid-area: temperaturText;
-  justify-self: start; 
-  align-self: end;     
+  justify-self: start;
+  align-self: end;
   margin-bottom: 10px;
   color: white;
   font-family: "Anton", sans-serif;
@@ -365,7 +435,7 @@ main p{
 
 .cardTitle {
   grid-area: cardTitle;
-  justify-self: start; 
+  justify-self: start;
   align-self: end;
   font-family: "Anton", sans-serif;
   font-weight: 400;
@@ -373,24 +443,27 @@ main p{
   font-size: 25px;
   color: white;
   margin-top: 10px;
+  outline: red;
+  text-shadow: -1px -1px 20px #000, 1px -1px 20px #000, -1px 1px 20px #000, 1px 1px 20px #000;
 }
 
-.CardFgText > h4.cardDetail {
+.CardFgText>h4.cardDetail {
   grid-area: cardDetail;
-  justify-self: start; 
+  justify-self: start;
   align-self: start;
   color: rgba(255, 255, 255, 0.7);
 }
 
-.CardFgText > p.cardText {
+.CardFgText>p.cardText {
   grid-area: cardText;
   justify-self: end;
   margin: 0;
   align-self: start;
   padding-right: 20px;
+  text-shadow: -1px -1px 0 #00000017, 1px -1px 0 #00000017, -1px 1px 0 #00000017, 1px 1px 0 #00000017;
 }
 
-.addBtn{
+.addBtn {
   position: absolute;
   inset: 0;
   margin: auto;
@@ -404,9 +477,17 @@ main p{
   justify-content: center;
 }
 
-.addBtn > p{
+.addBtn>p {
   color: white;
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 40px;
+}
+
+iframe{
+  margin-top: 30px;
+  width: 100%;
+  height: 70vh;
+  border: none;
+  border-radius: 20px;
 }

@@ -107,28 +107,28 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', checkScroll);
 
   function mapWeatherCodeToIcon(code, hour) {
-  // Decide day (d) vs night (n)
-  const suffix = (hour >= 6 && hour < 18) ? 'd' : 'n';
+    // Decide day (d) vs night (n)
+    const suffix = (hour >= 6 && hour < 18) ? 'd' : 'n';
 
-  // Map WMO codes → OWM base codes
-  let base;
-  switch (code) {
-    case 0:                        base = '01'; break; // clear sky
-    case 1: case 2:                base = '02'; break; // mainly/few clouds
-    case 3:                        base = '03'; break; // scattered clouds
-    case 45: case 48:              base = '50'; break; // fog
-    case 51: case 53: case 55:     base = '09'; break; // drizzle
-    case 61: case 63: case 65:     base = '10'; break; // rain
-    case 66: case 67:              base = '13'; break; // freezing rain / sleet
-    case 71: case 73: case 75:
-    case 77: case 85: case 86:     base = '13'; break; // snow
-    case 80: case 81: case 82:     base = '09'; break; // shower rain
-    case 95: case 96: case 99:     base = '11'; break; // thunderstorm
-    default:                       base = '01';         // fallback to clear
+    // Map WMO codes → OWM base codes
+    let base;
+    switch (code) {
+      case 0: base = '01'; break; // clear sky
+      case 1: case 2: base = '02'; break; // mainly/few clouds
+      case 3: base = '03'; break; // scattered clouds
+      case 45: case 48: base = '50'; break; // fog
+      case 51: case 53: case 55: base = '09'; break; // drizzle
+      case 61: case 63: case 65: base = '10'; break; // rain
+      case 66: case 67: base = '13'; break; // freezing rain / sleet
+      case 71: case 73: case 75:
+      case 77: case 85: case 86: base = '13'; break; // snow
+      case 80: case 81: case 82: base = '09'; break; // shower rain
+      case 95: case 96: case 99: base = '11'; break; // thunderstorm
+      default: base = '01';         // fallback to clear
+    }
+
+    return `${base}${suffix}@2x.png`;
   }
-
-  return `${base}${suffix}@2x.png`;
-}
 
   const coords = {
     Weingarten: { lat: 48.1716, lon: 9.5367 },
@@ -250,3 +250,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 });
+
