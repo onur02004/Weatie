@@ -163,6 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    card.addEventListener('click', () => {
+      console.log(`Card clicked for city: ${city} (${c.lat}, ${c.lon})`);
+      window.location.href = `cityDetails.html?city=${encodeURIComponent(city)}&lat=${c.lat}&lon=${c.lon}`;
+    });
+
     // Construct the URL for the Open-Meteo API
     const url = new URL('https://api.open-meteo.com/v1/forecast');
     url.search = new URLSearchParams({

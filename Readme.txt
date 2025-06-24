@@ -23,3 +23,14 @@ Navigation Items:
 -Social?
 -Settings?
 
+Locations:
+-Weingarten
+-Ravensburg
+-Stuttgart
+-Köln
+-Paris
+-Istanbul
+-Sydney
+-New York
+-Rome
+-St. Petersburg
