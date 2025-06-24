@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weatie – Einstellungen</title>
+  <link rel="stylesheet" href="settingsStyle.css">
+  <script defer src="settingsJs.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Settings</h1>
+    <div class="container">
+      <label for="tempUnit">Temperatureinheit:</label>
+      <select id="tempUnit">
+        <option value="C">Celsius (°C)</option>
+        <option value="F">Fahrenheit (°F)</option>
+      </select>
+
+      <label for="darkMode">Dark Mode:</label>
+      <input type="checkbox" id="darkMode" />
+
+      <label for="favCities">Bevorzugte Städte (kommagetrennt):</label>
+      <input type="text" id="favCities" placeholder="z. B. Weingarten, Paris, Sydney" />
+
+      <button onclick="saveSettings()">Speichern</button>
+    </div>
+  </main>
+</body>
+</html>
