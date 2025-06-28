@@ -79,10 +79,10 @@
         </select>
         
         <label for="darkMode">Dark Mode:</label>
-        <input type="checkbox" id="darkMode" />
-        
-        <label for="favCities">Bevorzugte Städte (kommagetrennt):</label>
-        <input type="text" id="favCities" placeholder="z. B. Weingarten, Paris, Sydney" />
+        <input type="checkbox" id="darkMode" checked>
+
+        <label for="standort">Standort:</label>
+        <button id="standortButton" onclick="frageNachStandort()">Standort freigeben</button>
         
         <button onclick="saveSettings()">Speichern</button>
       </div>
