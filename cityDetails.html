@@ -26,7 +26,7 @@
                     </svg>
                 </button>
             </li>
-            <li >
+            <li>
                 <a href="index.html">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                         fill="#e8eaed">
@@ -66,17 +66,145 @@
                     </div>
                 </ul>
             </li>
-            <a href="calendar.html">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#e8eaed">
+            <a href="settings.html" aria-label="Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="#e8eaed"
+                    role="img" focusable="false">
                     <path
-                        d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-40q0-17 11.5-28.5T280-880q17 0 28.5 11.5T320-840v40h320v-40q0-17 11.5-28.5T680-880q17 0 28.5 11.5T720-840v40h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z" />
+                        d="M12 8a4 4 0 100 8 4 4 0 000-8zm8.94 4a6.96 6.96 0 01-.2 1.74l2.12 1.65a.5.5 0 01.11.65l-2 3.46a.5.5 0 01-.61.22l-2.49-1a7.03 7.03 0 01-1.5.88l-.38 2.65a.5.5 0 01-.5.42h-4a.5.5 0 01-.5-.42l-.38-2.65a7.03 7.03 0 01-1.5-.88l-2.49 1a.5.5 0 01-.61-.22l-2-3.46a.5.5 0 01.11-.65l2.12-1.65A6.96 6.96 0 013.06 12a6.96 6.96 0 01.2-1.74L1.14 8.61a.5.5 0 01-.11-.65l2-3.46a.5.5 0 01.61-.22l2.49 1c.47-.35.98-.64 1.5-.88l.38-2.65A.5.5 0 019.5 2h4a.5.5 0 01.5.42l.38 2.65c.52.24 1.03.53 1.5.88l2.49-1a.5.5 0 01.61.22l2 3.46a.5.5 0 01-.11.65l-2.12 1.65c.12.56.18 1.14.18 1.74z" />
                 </svg>
                 <span>Settings</span>
             </a>
             </li>
         </ul>
     </nav>
+
+    <div class="MainContainer">
+
+        <div class="topContainer">
+            <h2 class="title">Weingarten</h2>
+            <h1 class="temperatur">31c</h1>
+        </div>
+
+        <div class="mostImportantContainer">
+            <div class="stat">
+                <span class="number">31</span>
+                <span class="label">Gefühlt wie</span>
+            </div>
+            <div class="stat">
+                <span class="number">17</span>
+                <span class="label">Air quality</span>
+            </div>
+            <div class="stat">
+                <span class="number">138</span>
+                <span class="label">Wind</span>
+            </div>
+            <div class="stat">
+                <span class="number">31</span>
+                <span class="label">Humidit</span>
+            </div>
+        </div>
+
+        <h2 style="align-items: start; width: 95%; margin-top: 30px;">Daily Weather:</h2>
+
+        <div class="dailyWeatherContainer">
+            <div class="dailyWeatherCard">
+                <div class="dailyWeatherCard-top-left">31C</div>
+                <div class="dailyWeatherCard-top-right">Gestern</div>
+                <img src="/Images/weather_icons/01d@2x.png" alt="Description of Image"
+                    class="dailyWeatherCard-center-image">
+            </div>
+            <div class="dailyWeatherCard">
+                <div class="dailyWeatherCard-top-left">31C</div>
+                <div class="dailyWeatherCard-top-right">Heute</div>
+                <img src="/Images/weather_icons/01d@2x.png" alt="Description of Image"
+                    class="dailyWeatherCard-center-image">
+            </div>
+            <div class="dailyWeatherCard">
+                <div class="dailyWeatherCard-top-left">31C</div>
+                <div class="dailyWeatherCard-top-right">Morgen</div>
+                <img src="/Images/weather_icons/01d@2x.png" alt="Description of Image"
+                    class="dailyWeatherCard-center-image">
+            </div>
+            <div class="dailyWeatherCard">
+                <div class="dailyWeatherCard-top-left">31C</div>
+                <div class="dailyWeatherCard-top-right">+2 Tage</div>
+                <img src="/Images/weather_icons/01d@2x.png" alt="Description of Image"
+                    class="dailyWeatherCard-center-image">
+            </div>
+            <div class="dailyWeatherCard">
+                <div class="dailyWeatherCard-top-left">31C</div>
+                <div class="dailyWeatherCard-top-right">+3 Tage</div>
+                <img src="/Images/weather_icons/01d@2x.png" alt="Description of Image"
+                    class="dailyWeatherCard-center-image">
+            </div>
+            <div class="dailyWeatherCard">
+                <div class="dailyWeatherCard-top-left">31C</div>
+                <div class="dailyWeatherCard-top-right">+4 Tage</div>
+                <img src="/Images/weather_icons/01d@2x.png" alt="Description of Image"
+                    class="dailyWeatherCard-center-image">
+            </div>
+            <div class="dailyWeatherCard">
+                <div class="dailyWeatherCard-top-left">31C</div>
+                <div class="dailyWeatherCard-top-right">+5 Tage</div>
+                <img src="/Images/weather_icons/01d@2x.png" alt="Description of Image"
+                    class="dailyWeatherCard-center-image">
+            </div>
+            <div class="dailyWeatherCard">
+                <div class="dailyWeatherCard-top-left">31C</div>
+                <div class="dailyWeatherCard-top-right">+6 Tage</div>
+                <img src="/Images/weather_icons/01d@2x.png" alt="Description of Image"
+                    class="dailyWeatherCard-center-image">
+            </div>
+            <div class="dailyWeatherCard">
+                <div class="dailyWeatherCard-top-left">31C</div>
+                <div class="dailyWeatherCard-top-right">+7 Tage</div>
+                <img src="/Images/weather_icons/01d@2x.png" alt="Description of Image"
+                    class="dailyWeatherCard-center-image">
+            </div>
+        </div>
+
+        <h2 style="align-items: start; width: 95%; margin-top: 30px;">Hourly Weather:</h2>
+
+        <div class="dailyWeatherContainer">
+            <div class="hourlyWeatherCard">
+                <div class="dailyWeatherCard-top-left">31C</div>
+                <div class="dailyWeatherCard-top-right">Gestern</div>
+                <img src="/Images/weather_icons/01d@2x.png" alt="Description of Image"
+                    class="hourlyWeatherCard-center-image">
+            </div>
+        </div>
+
+        <h2 style="align-items: start; width: 95%; margin-top: 30px;">Details:</h2>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <h2>Temperatur</h2>
+                <p>31°C</p>
+                <h4>Rising</h4>
+            </div>
+            <div class="grid-item">
+                <h2>Feels Like</h2>
+                <p>39°C</p>
+                <h4 style="color: indianred;">Very hot</h4>
+            </div>
+            <div class="grid-item">
+                <h2>Wind</h2>
+                <p>10 km/h</p>
+                <h4>Light Air</h4>
+            </div>
+            <div class="grid-item">
+                <h2>Cloud Cover</h2>
+                <p>21%</p>
+                <h4 style="color:burlywood;">Mostly Sunny</h4>
+            </div>
+            <div class="grid-item">
+                <h2>Humidity</h2>
+                <p>56%</p>
+                <h4>Normal</h4>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

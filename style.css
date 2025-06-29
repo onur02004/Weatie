@@ -265,7 +265,6 @@ main p {
   height: 80vh;
   overflow: hidden;
   border-radius: 20px;
-
   transition: background-image 5s ease-in-out;
 }
 
