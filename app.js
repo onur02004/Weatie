@@ -191,9 +191,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1) Render Temperature
         const tempEl = card.querySelector('.temperaturText');
         const temperature = data.current_weather?.temperature;
+        const tempUnit = localStorage.getItem("weatie_unit") || "C"; // Standard: Celsius
 
         if (tempEl && typeof temperature === 'number') {
-          tempEl.textContent = `${Math.round(temperature)}°C`;
+        if (tempUnit === "F") {
+        const fahrenheit = (temperature * 9/5) + 32;
+        tempEl.textContent = `${Math.round(fahrenheit)}°F`;
+        } else {
+        tempEl.textContent = `${Math.round(temperature)}°C`;
+        } 
         } else {
           console.warn(`Temperature data missing or invalid for ${city}.`);
           if (tempEl) tempEl.textContent = 'N/A';

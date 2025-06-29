@@ -25,6 +25,10 @@ html {
 body {
   min-height: 100vh;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--base-clr);
+  color: var(--text-clr);
 }
 
 #sidebar {
@@ -43,6 +47,9 @@ body {
   text-wrap: nowrap;
 
   z-index: 10000;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
 #sidebar.close {
@@ -159,10 +166,14 @@ main p {
 }
 
 .container {
-  border: 1px solid var(--line-clr);
-  border-radius: 1em;
-  margin-bottom: 20px;
-  padding: min(3em, 15%);
+  margin-bottom: 10px;
+  width: 400px;
+  height: 30%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 
   h2,
   p {
@@ -252,29 +263,11 @@ main p {
   }
 }
 
-
-main {
-  width: 100%;
-  max-width: 600px;
-  background-color: var(--card-bg);
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  padding: min(30px, 7%);
-  height: 60vh;
-}
-
 h1 {
   font-size: 2rem;
   color: var(--text-clr);
   margin-bottom: 1.5rem;
   text-align: center;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
 }
 
 label {
@@ -313,4 +306,36 @@ button {
 
 button:hover {
   background-color: #4a4ff1;
+}
+
+.settingsContainer {
+  background-color: var(--card-bg);
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+body.light-mode {
+  background-color: #dddddd;
+  color: #111;
+}
+
+#standortButton {
+  padding: 2%;
+  font-size: 15px;
+  background-color: #b1b1b1;
+  color: rgb(36, 36, 36);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#standortButton:hover {
+  background-color: #747474;
 }
