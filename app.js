@@ -48,6 +48,16 @@ function closeAllSubMenus() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const mode = localStorage.getItem("weatie_theme");
+
+    if (mode === "light") {
+      document.body.classList.add("light-mode");
+    } else {
+      document.body.classList.remove("light-mode");
+    }
+
+
   const panels = Array.from(document.querySelectorAll('.animationpanel'));
   if (!panels.length) return;
 
@@ -93,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // kick things off
   startCycling();
 
   // re-start if we cross the 800px breakpoint

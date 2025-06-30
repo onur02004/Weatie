@@ -21,6 +21,11 @@ html {
   overflow-x: hidden;
 }
 
+body.light-mode {
+  background-color: #dddddd;
+  color: #111;
+}
+
 body {
   min-height: 100vh;
   min-height: 100dvh;

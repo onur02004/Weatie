@@ -29,6 +29,12 @@ body {
   grid-template-columns: auto 1fr;
 }
 
+body.light-mode {
+  background-color: #dddddd;
+  color: #111;
+}
+
+
 #sidebar {
   box-sizing: border-box;
   height: 100vh;

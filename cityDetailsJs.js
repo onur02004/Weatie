@@ -15,6 +15,17 @@ const sidebar = document.getElementById('sidebar')
   };
 
   AOS.init();
+  checkWhiteMode();
+
+function checkWhiteMode() {
+    const mode = localStorage.getItem("weatie_theme");
+
+    if (mode === "light") {
+      document.body.classList.add("light-mode");
+    } else {
+      document.body.classList.remove("light-mode");
+    }
+}
 
 function toggleSidebar() {
   sidebar.classList.toggle('close')
