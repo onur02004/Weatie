@@ -11,6 +11,7 @@ function saveSettings() {
   alert("Einstellungen gespeichert!");
 }
 
+
 function toggleSidebar() {
   sidebar.classList.toggle('close')
   toggleButton.classList.toggle('rotate')

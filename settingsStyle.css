@@ -158,6 +158,9 @@ body {
   background-color: var(--hover-clr);
 }
 
+main {
+  padding: min(30px, 7%);
+}
 
 main p {
   color: var(--secondary-text-clr);
