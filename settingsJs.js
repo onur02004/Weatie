@@ -51,10 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (cities) document.getElementById("favCities").value = cities;
 });
 
-<<<<<<< HEAD
 
-const toggleButton = document.getElementById('toggle-btn')
-const sidebar = document.getElementById('sidebar')
 
 function toggleSidebar() {
   sidebar.classList.toggle('close')
@@ -84,7 +81,6 @@ function closeAllSubMenus() {
     ul.previousElementSibling.classList.remove('rotate')
   })
 }
-=======
 const darkToggle = document.getElementById("darkMode");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -126,4 +122,3 @@ function frageNachStandort() {
         alert("Geolocation wird von deinem Browser nicht unterstützt.");
       }
     }
->>>>>>> eedf592202c4d29be689e6f9cecd742dba7d5c72
