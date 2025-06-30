@@ -572,7 +572,30 @@ main p {
 }
 
 
+.hourlyWeatherDisplay {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: auto;
+    gap: 15px; /* Adds space between the cards */
+    padding: 10px; /* <--- CHANGE THIS: Apply padding to the container */
+    width: 95%;
+    margin-top: 20px;
+    background-color: #2b2a3a;
+    border-radius: 11px;
+    scrollbar-width: thin;
+    scrollbar-color: #5c526d #2b2a3a;
+}
 
+.hourlyWeatherDisplay::-webkit-scrollbar-track {
+    background: #2b2a3a;
+    border-radius: 11px;
+}
+
+.hourlyWeatherDisplay::-webkit-scrollbar-thumb {
+    background-color: #5c526d;
+    border-radius: 11px;
+    border: 2px solid #2b2a3a;
+}
 
 .hourlyWeatherCard {
     flex-shrink: 0;
@@ -612,6 +635,7 @@ main p {
   justify-content: center;
   margin-top: 20px;
   width: 95%;
+  margin-bottom: 60px;
 }
 
 .grid-item{

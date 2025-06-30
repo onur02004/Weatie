@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Passion+One:wght@400;700;900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 </head>
 
 <body>
@@ -86,21 +88,21 @@
         </div>
 
         <div class="mostImportantContainer">
-            <div class="stat">
+            <div class="stat" data-aos="zoom-in">
                 <span class="number">31</span>
                 <span class="label">Gefühlt wie</span>
             </div>
-            <div class="stat">
+            <div class="stat" data-aos="zoom-in">
                 <span class="number">17</span>
                 <span class="label">Air quality</span>
             </div>
-            <div class="stat">
+            <div class="stat" data-aos="zoom-in">
                 <span class="number">138</span>
                 <span class="label">Wind</span>
             </div>
-            <div class="stat">
+            <div class="stat" data-aos="zoom-in">
                 <span class="number">31</span>
-                <span class="label">Humidit</span>
+                <span class="label">Humidity</span>
             </div>
         </div>
 
@@ -165,7 +167,7 @@
 
         <h2 style="align-items: start; width: 95%; margin-top: 30px;">Hourly Weather:</h2>
 
-        <div class="dailyWeatherContainer">
+        <div class="hourlyWeatherDisplay">
             <div class="hourlyWeatherCard">
                 <div class="dailyWeatherCard-top-left">31C</div>
                 <div class="dailyWeatherCard-top-right">Gestern</div>
@@ -177,27 +179,32 @@
         <h2 style="align-items: start; width: 95%; margin-top: 30px;">Details:</h2>
 
         <div class="grid-container">
-            <div class="grid-item">
+            <div class="grid-item" data-aos="fade-up"
+     data-aos-anchor-placement="center-bottom">
                 <h2>Temperatur</h2>
                 <p>31°C</p>
                 <h4>Rising</h4>
             </div>
-            <div class="grid-item">
+            <div class="grid-item" data-aos="fade-up"
+     data-aos-anchor-placement="center-bottom">
                 <h2>Feels Like</h2>
                 <p>39°C</p>
-                <h4 style="color: indianred;">Very hot</h4>
+                <h4>Very hot</h4>
             </div>
-            <div class="grid-item">
+            <div class="grid-item" data-aos="fade-up"
+     data-aos-anchor-placement="center-bottom">
                 <h2>Wind</h2>
                 <p>10 km/h</p>
                 <h4>Light Air</h4>
             </div>
-            <div class="grid-item">
+            <div class="grid-item" data-aos="fade-up"
+     data-aos-anchor-placement="center-bottom">
                 <h2>Cloud Cover</h2>
                 <p>21%</p>
-                <h4 style="color:burlywood;">Mostly Sunny</h4>
+                <h4>Mostly Sunny</h4>
             </div>
-            <div class="grid-item">
+            <div class="grid-item" data-aos="fade-up"
+     data-aos-anchor-placement="center-bottom">
                 <h2>Humidity</h2>
                 <p>56%</p>
                 <h4>Normal</h4>

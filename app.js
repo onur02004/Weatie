@@ -1,6 +1,21 @@
 const toggleButton = document.getElementById('toggle-btn')
 const sidebar = document.getElementById('sidebar')
 
+  const coords = {
+    weingarten: { lat: 48.1716, lon: 9.5367 },
+    ravensburg: { lat: 47.7895, lon: 9.6125 },
+    stuttgart: { lat: 48.7758, lon: 9.1829 },
+    köln: { lat: 50.9375, lon: 6.9603 },
+    paris: { lat: 48.8566, lon: 2.3522 },
+    istanbul: { lat: 41.0082, lon: 28.9784 },
+    sydney: { lat: -33.8688, lon: 151.2093 },
+    'new york': { lat: 40.7128, lon: -74.0060 },
+    rome: { lat: 41.9028, lon: 12.4964 },
+    'st. petersburg': { lat: 59.9343, lon: 30.3351 }
+  };
+
+    AOS.init();
+
 
 function toggleSidebar() {
   sidebar.classList.toggle('close')
@@ -130,18 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${base}${suffix}@2x.png`;
   }
 
-  const coords = {
-    Weingarten: { lat: 48.1716, lon: 9.5367 },
-    Ravensburg: { lat: 47.7895, lon: 9.6125 },
-    Stuttgart: { lat: 48.7758, lon: 9.1829 },
-    Köln: { lat: 50.9375, lon: 6.9603 },
-    Paris: { lat: 48.8566, lon: 2.3522 },
-    Istanbul: { lat: 41.0082, lon: 28.9784 },
-    Sydney: { lat: -33.8688, lon: 151.2093 },
-    'New York': { lat: 40.7128, lon: -74.0060 },
-    Rome: { lat: 41.9028, lon: 12.4964 },
-    'St. Petersburg': { lat: 59.9343, lon: 30.3351 }
-  };
+
 
   document.querySelectorAll('.card').forEach(card => {
     // Get the title element within the current card
@@ -154,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Extract the city name from the card title
-    const city = titleEl.textContent.trim();
+    const city = (titleEl.textContent.toLowerCase());
     const c = coords[city]; // Get coordinates from the coords object
 
     // If coordinates for the city are not defined, log a warning and skip
@@ -194,12 +198,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const tempUnit = localStorage.getItem("weatie_unit") || "C"; // Standard: Celsius
 
         if (tempEl && typeof temperature === 'number') {
-        if (tempUnit === "F") {
-        const fahrenheit = (temperature * 9/5) + 32;
-        tempEl.textContent = `${Math.round(fahrenheit)}°F`;
-        } else {
-        tempEl.textContent = `${Math.round(temperature)}°C`;
-        } 
+          if (tempUnit === "F") {
+            const fahrenheit = (temperature * 9 / 5) + 32;
+            tempEl.textContent = `${Math.round(fahrenheit)}°F`;
+          } else {
+            tempEl.textContent = `${Math.round(temperature)}°C`;
+          }
         } else {
           console.warn(`Temperature data missing or invalid for ${city}.`);
           if (tempEl) tempEl.textContent = 'N/A';
@@ -262,3 +266,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+function handleSearch() {
+  const input = document.getElementById('city-input');
+  const city = formatCityNameForUrl(input.value.trim());
+  if (city) {
+    const c = coords[city];
+    if (c) {
+      window.location = `cityDetails.html?city=${encodeURIComponent(city)}&lat=${c.lat}&lon=${c.lon}`;
+    }else{
+      alert(`No coordinates defined for city: >${city}<. Please try another city.`);
+    }
+  }
+}
+
+function formatCityNameForUrl(cityName) {
+  return cityName.replace(/\s/g, '').replace(/\./g, '').toLowerCase();
+}

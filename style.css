@@ -18,6 +18,7 @@ html {
   font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5rem;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -489,4 +490,11 @@ iframe{
   height: 70vh;
   border: none;
   border-radius: 20px;
+}
+
+
+.search-btn{
+  height: 40px;
+  width: 80px;
+  border-radius: 11px;
 }

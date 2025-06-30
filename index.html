@@ -11,7 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Passion+One:wght@400;700;900&display=swap"
     rel="stylesheet">
-</script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+  </script>
 
 
 </head>
@@ -65,13 +68,15 @@
           </div>
         </ul>
       </li>
-<a href="settings.html" aria-label="Settings">
-  <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="#e8eaed" role="img" focusable="false">
-    <path d="M12 8a4 4 0 100 8 4 4 0 000-8zm8.94 4a6.96 6.96 0 01-.2 1.74l2.12 1.65a.5.5 0 01.11.65l-2 3.46a.5.5 0 01-.61.22l-2.49-1a7.03 7.03 0 01-1.5.88l-.38 2.65a.5.5 0 01-.5.42h-4a.5.5 0 01-.5-.42l-.38-2.65a7.03 7.03 0 01-1.5-.88l-2.49 1a.5.5 0 01-.61-.22l-2-3.46a.5.5 0 01.11-.65l2.12-1.65A6.96 6.96 0 013.06 12a6.96 6.96 0 01.2-1.74L1.14 8.61a.5.5 0 01-.11-.65l2-3.46a.5.5 0 01.61-.22l2.49 1c.47-.35.98-.64 1.5-.88l.38-2.65A.5.5 0 019.5 2h4a.5.5 0 01.5.42l.38 2.65c.52.24 1.03.53 1.5.88l2.49-1a.5.5 0 01.61.22l2 3.46a.5.5 0 01-.11.65l-2.12 1.65c.12.56.18 1.14.18 1.74z"/>
-  </svg>
-  <span>Settings</span>
+      <a href="settings.html" aria-label="Settings">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="#e8eaed" role="img"
+          focusable="false">
+          <path
+            d="M12 8a4 4 0 100 8 4 4 0 000-8zm8.94 4a6.96 6.96 0 01-.2 1.74l2.12 1.65a.5.5 0 01.11.65l-2 3.46a.5.5 0 01-.61.22l-2.49-1a7.03 7.03 0 01-1.5.88l-.38 2.65a.5.5 0 01-.5.42h-4a.5.5 0 01-.5-.42l-.38-2.65a7.03 7.03 0 01-1.5-.88l-2.49 1a.5.5 0 01-.61-.22l-2-3.46a.5.5 0 01.11-.65l2.12-1.65A6.96 6.96 0 013.06 12a6.96 6.96 0 01.2-1.74L1.14 8.61a.5.5 0 01-.11-.65l2-3.46a.5.5 0 01.61-.22l2.49 1c.47-.35.98-.64 1.5-.88l.38-2.65A.5.5 0 019.5 2h4a.5.5 0 01.5.42l.38 2.65c.52.24 1.03.53 1.5.88l2.49-1a.5.5 0 01.61.22l2 3.46a.5.5 0 01-.11.65l-2.12 1.65c.12.56.18 1.14.18 1.74z" />
+        </svg>
+        <span>Settings</span>
 
-</a>
+      </a>
       </li>
     </ul>
   </nav>
@@ -88,6 +93,7 @@
       <div class="center-overlay">
         <h1>Check the Weather</h1>
         <input type="text" id="city-input" placeholder="Enter city name" />
+        <button class="search-btn" onclick="handleSearch()">Go!</button>
       </div>
     </div>
 
@@ -95,7 +101,7 @@
 
 
     <div class="gridContainer">
-      <div class="card">
+      <div class="card" data-aos="zoom-out-up">
         <div class="cardBgImg" style="background-image: url(../Images/LocationBG/Weingarten.jpg);"></div>
         <div class="CardFgText">
           <img src="../Images/WeatherIcons/heavy-rain.png" alt="Weather Icon" class="weatherIcon">
@@ -106,7 +112,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="zoom-out-up">
         <div class="cardBgImg" style="background-image: url(../Images/LocationBG/Ravensburg.jpg); opacity: 0.85;"></div>
         <div class="CardFgText">
           <img src="../Images/WeatherIcons/heavy-rain.png" alt="Weather Icon" class="weatherIcon">
@@ -117,7 +123,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="zoom-out-up">
         <div class="cardBgImg" style="background-image: url(../Images/LocationBG/Stuttgart.jpg); opacity: 0.85;"></div>
         <div class="CardFgText">
           <img src="../Images/WeatherIcons/heavy-rain.png" alt="Weather Icon" class="weatherIcon">
@@ -128,7 +134,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="zoom-out-up">
         <div class="cardBgImg" style="background-image: url(../Images/LocationBG/Köln.jpg); opacity: 0.85;"></div>
         <div class="CardFgText">
           <img src="../Images/WeatherIcons/heavy-rain.png" alt="Weather Icon" class="weatherIcon">
@@ -139,7 +145,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="zoom-out-up">
         <div class="cardBgImg" style="background-image: url(../Images/LocationBG/Paris.jpg); opacity: 0.85;"></div>
         <div class="CardFgText">
           <img src="../Images/WeatherIcons/heavy-rain.png" alt="Weather Icon" class="weatherIcon">
@@ -150,7 +156,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="zoom-out-up">
         <div class="cardBgImg" style="background-image: url(../Images/LocationBG/Istanbul.jpg); opacity: 0.85;"></div>
         <div class="CardFgText">
           <img src="../Images/WeatherIcons/heavy-rain.png" alt="Weather Icon" class="weatherIcon">
@@ -161,7 +167,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="zoom-out-up">
         <div class="cardBgImg" style="background-image: url(../Images/LocationBG/Sydney.jpg); opacity: 0.85;"></div>
         <div class="CardFgText">
           <img src="../Images/WeatherIcons/heavy-rain.png" alt="Weather Icon" class="weatherIcon">
@@ -172,7 +178,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="zoom-out-up">
         <div class="cardBgImg" style="background-image: url(../Images/LocationBG/newyork.jpg); opacity: 0.85;"></div>
         <div class="CardFgText">
           <img src="../Images/WeatherIcons/heavy-rain.png" alt="Weather Icon" class="weatherIcon">
@@ -183,7 +189,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="zoom-out-up">
         <div class="cardBgImg" style="background-image: url(../Images/LocationBG/Rome.jpg); opacity: 0.85;"></div>
         <div class="CardFgText">
           <img src="../Images/WeatherIcons/heavy-rain.png" alt="Weather Icon" class="weatherIcon">
@@ -194,7 +200,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" data-aos="zoom-out-up">
         <div class="cardBgImg" style="background-image: url(../Images/LocationBG/Stpetersburg.jpg); opacity: 0.85;">
         </div>
         <div class="CardFgText">
@@ -206,8 +212,8 @@
         </div>
       </div>
 
-      <div class="card">
-        <div class="cardBgImg" style="border: solid rgb(87, 87, 87); "></div>
+      <div class="card" style="padding-bottom: 15px;">
+        <div class="cardBgImg" style="border: solid 7px rgb(87, 87, 87);"></div>
         <div class="addBtn">
           <p>+</p>
         </div>
@@ -223,6 +229,7 @@
 
     </div>
   </main>
+
 </body>
 
 </html>
