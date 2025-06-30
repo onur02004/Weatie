@@ -93,15 +93,15 @@ async function getWeatherInfo() {
     return;
   }
 
-  // *** Replace with your WeatherAPI.com API Key ***
-  const API_KEY = 'c0454540f64f4f209ef185743252906'; // GET YOUR KEY FROM WEATHERAPI.COM
+  // *** Replace mit WeatherAPI.com API Key ***
+  const API_KEY = 'c0454540f64f4f209ef185743252906'; // Ger key von WEATHERAPI.COM
 
-  const queryLocation = `${c.lat},${c.lon}`; // WeatherAPI uses lat,lon format
+  const queryLocation = `${c.lat},${c.lon}`; // WeatherAPI benutzt lat,lon format
 
-  // Forecast API for current, hourly, and daily (next 7-14 days)
+  // Forecast API für current, stündlich, and täglich (next 7-14 days)
   const forecastUrl = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${queryLocation}&days=10&aqi=no&alerts=no`;
 
-  // Historical API for yesterday's weather
+  // Historical API für wetter von gestern
   const today = new Date();
   const yesterday = new Date(today);
   yesterday.setDate(today.getDate() - 1);
@@ -109,7 +109,7 @@ async function getWeatherInfo() {
   const historicalUrl = `http://api.weatherapi.com/v1/history.json?key=${API_KEY}&q=${queryLocation}&dt=${yesterdayDateString}`;
 
   try {
-    // --- Fetch historical data for yesterday ---
+    // Fetch historical data für gestern
     const historyResponse = await fetch(historicalUrl);
     const historyData = await historyResponse.json();
     console.log('Historical Data (Yesterday):', historyData);
@@ -117,10 +117,10 @@ async function getWeatherInfo() {
     if (historyData.error) {
       console.error('Error fetching historical weather:', historyData.error.message);
       alert(`Error fetching historical weather: ${historyData.error.message}`);
-      // If historical fails, we can still proceed with current/forecast
+      // wenn historical fails, dann proceed mit current/forecast
     }
 
-    // --- Fetch current and forecast data ---
+    // Fetch current und forecast data
     const forecastResponse = await fetch(forecastUrl);
     const forecastData = await forecastResponse.json();
     console.log('Forecast Data (Current, Hourly, Daily):', forecastData);
@@ -132,39 +132,39 @@ async function getWeatherInfo() {
     }
 
     const current = forecastData.current;
-    const forecastDays = forecastData.forecast.forecastday; // Array of daily forecasts
+    const forecastDays = forecastData.forecast.forecastday; // Array aus täglichen forecasts
 
     // Update top container
     document.querySelector('.temperatur').textContent = `${Math.round(current.temp_c)}°C`;
 
-    // Update most important container
+    // Update wichtigsten container
     document.querySelector('.mostImportantContainer .stat:nth-child(1) .number').textContent = Math.round(current.feelslike_c) + '°C';
-    // WeatherAPI has 'us-epa-index' for air quality, or you can check individual pollutants.
-    // For simplicity, let's keep it 'N/A' or use a basic status if AQI is enabled.
+    // WeatherAPI hat 'us-epa-index' für Luftqualität & man kann nach individuellen Schadstoffen schauen
+    // weil einfacher --> 'N/A'
     document.querySelector('.mostImportantContainer .stat:nth-child(2) .number').textContent = 'N/A';
     document.querySelector('.mostImportantContainer .stat:nth-child(3) .number').textContent = Math.round(current.wind_kph) + ' km/h';
     document.querySelector('.mostImportantContainer .stat:nth-child(4) .number').textContent = current.humidity + '%';
 
-    // --- Populate Daily Weather Cards ---
+    // Tägliche Wetterkarten füllen!
     const dailyWeatherContainer = document.querySelector('.dailyWeatherContainer');
-    dailyWeatherContainer.innerHTML = ''; // Clear existing cards
+    dailyWeatherContainer.innerHTML = ''; // Clear bestehende cards
 
-    // Add 'Gestern' card using historical data
+    // 'Gestern' card mit historical data hinzufügen
     if (historyData.forecast && historyData.forecast.forecastday.length > 0) {
       const yesterdayTemp = historyData.forecast.forecastday[0].day.avgtemp_c;
       const yesterdayIcon = historyData.forecast.forecastday[0].day.condition.icon;
       const yesterdayCard = createDailyWeatherCard(Math.round(yesterdayTemp), 'Gestern', `https:${yesterdayIcon}`);
       dailyWeatherContainer.appendChild(yesterdayCard);
     } else {
-      // Fallback if historical data is not available
+      // Fallback wenn historical data nicht verfügbar
       const yesterdayCard = createDailyWeatherCard(Math.round(current.temp_c), 'Gestern', `https:${current.condition.icon}`);
       dailyWeatherContainer.appendChild(yesterdayCard);
     }
 
     const daysOfWeek = ['So.', 'Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.'];
 
-    // Populate cards for "Heute" and the next 7 days (or as many as available, up to 10 days in this forecast API call)
-    forecastDays.slice(0, 8).forEach((dayData, index) => { // slice(0, 8) gets today + next 7 days
+    // cards für "Heute" füllen & next 7 Tage (bzw. so viele wie möglich sind, bis zu 10 tage im forecast API call)
+    forecastDays.slice(0, 8).forEach((dayData, index) => { // slice(0, 8) gets heut + next 7 tage
       const date = new Date(dayData.date_epoch * 1000);
       let dayLabel = '';
 
@@ -181,24 +181,24 @@ async function getWeatherInfo() {
     });
 
 
-    // --- Populate Hourly Weather Cards ---
+    // Stündliche wetter card füllen!
     const hourlyWeatherContainer = document.querySelector('.hourlyWeatherDisplay'); // Changed selector
 if (hourlyWeatherContainer) {
-      hourlyWeatherContainer.innerHTML = ''; // Clear existing cards
+      hourlyWeatherContainer.innerHTML = ''; // Clear bestehende cards
 
-      // WeatherAPI forecast provides hourly data for today and future days.
-      // Let's get the hourly forecast for the current day
+      // WeatherAPI forecast hat stündliche wetter Daten für heute & weitere tage
+      // get hourly forecast für heute
       const todayHourly = forecastDays[0].hour;
 
-      // Filter to get only future hours from now
+      // Filter um nur noch zukünftige stunden zu bekommen
       const currentHour = new Date().getHours();
       const futureHourly = todayHourly.filter(hourData => {
         const hour = new Date(hourData.time_epoch * 1000).getHours();
-        // If the hour is the current hour or later
+        // wenn hour ist current oder später
         return hour >= currentHour;
       });
 
-      // Display up to the next 24 hours, starting from the current hour
+      // Display up to next 24 hours, beginnend bei momentaner stunde
       futureHourly.slice(0, 24).forEach(hourData => {
         const date = new Date(hourData.time_epoch * 1000);
         const hour = date.getHours();
@@ -213,17 +213,17 @@ if (hourlyWeatherContainer) {
     }
 
 
-    // --- Populate Details Div ---
+    // Populate Details Div!
     document.querySelector('.grid-item:nth-child(1) p').textContent = `${Math.round(current.temp_c)}°C`;
     document.querySelector('.grid-item:nth-child(2) p').textContent = `${Math.round(current.feelslike_c)}°C`;
     document.querySelector('.grid-item:nth-child(3) p').textContent = `${Math.round(current.wind_kph)} km/h`;
-    document.querySelector('.grid-item:nth-child(4) p').textContent = `${current.cloud}%`; // WeatherAPI uses 'cloud' for cloud cover
+    document.querySelector('.grid-item:nth-child(4) p').textContent = `${current.cloud}%`; // WeatherAPI benutzt 'cloud' für cloud cover
     document.querySelector('.grid-item:nth-child(5) p').textContent = `${current.humidity}%`;
 
-    // Update detail status messages based on values (example logic)
+    // Update detail status messages basierend auf den values (example logic)
     document.querySelector('.grid-item:nth-child(1) h4').textContent = current.temp_c > 25 ? 'Warm' : 'Mild';
     document.querySelector('.grid-item:nth-child(2) h4').textContent = current.feelslike_c > 30 ? 'Very hot' : 'Normal';
-    document.querySelector('.grid-item:nth-child(3) h4').textContent = current.wind_kph > 20 ? 'Breezy' : 'Light Air'; // Adjusted for km/h
+    document.querySelector('.grid-item:nth-child(3) h4').textContent = current.wind_kph > 20 ? 'Breezy' : 'Light Air'; // Adjusted für km/h
     document.querySelector('.grid-item:nth-child(4) h4').textContent = current.cloud < 30 ? 'Mostly Sunny' : (current.cloud < 70 ? 'Partly Cloudy' : 'Cloudy');
     document.querySelector('.grid-item:nth-child(5) h4').textContent = current.humidity > 70 ? 'High' : (current.humidity < 40 ? 'Low' : 'Normal');
 

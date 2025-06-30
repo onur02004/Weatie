@@ -48,16 +48,6 @@ function closeAllSubMenus() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    const mode = localStorage.getItem("weatie_theme");
-
-    if (mode === "light") {
-      document.body.classList.add("light-mode");
-    } else {
-      document.body.classList.remove("light-mode");
-    }
-
-
   const panels = Array.from(document.querySelectorAll('.animationpanel'));
   if (!panels.length) return;
 
@@ -67,18 +57,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let timer;
 
   function cycleMulti() {
-    // remove active from all, add to current
+    // remove active aus all, add zu current
     panels.forEach(p => p.classList.remove('active'));
     panels[idx].classList.add('active');
     idx = (idx + 1) % panels.length;
   }
 
   function cycleSingle() {
-    // hide all except the first panel
+    // hide alle außer erstes panel
     panels.forEach((p, i) => {
       p.style.display = i === 0 ? '' : 'none';
     });
-    // update the first panel’s image
+    // update image vom ersten panel
     panels[0].style.backgroundImage = images[idx];
     idx = (idx + 1) % images.length;
   }
@@ -88,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     idx = 0;
     if (window.innerWidth > 800) {
       isMulti = true;
-      // restore all panels visible
+      // Alle sichtbaren Panels wiederherstellen
       panels.forEach((p, i) => {
         p.style.display = '';
         p.style.backgroundImage = images[i];
@@ -103,9 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // kick things off
   startCycling();
 
-  // re-start if we cross the 800px breakpoint
+  // re-start, wenn 800px breakpoint überschritten
   window.addEventListener('resize', () => {
     const nowMulti = window.innerWidth > 800;
     if (nowMulti !== isMulti) startCycling();
@@ -157,20 +148,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   document.querySelectorAll('.card').forEach(card => {
-    // Get the title element within the current card
+    // Get title Element in current card
     const titleEl = card.querySelector('.cardTitle');
 
-    // If there's no title element or it's the "+" card, skip processing
-    // The trim() method removes whitespace from both ends of a string.
+    // Wenn kein title Element oder "+" card, skip
+    // trim() Methode entfernt Leerzeichen von beiden Enden eines Strings
     if (!titleEl || titleEl.textContent.trim() === '+') {
       return;
     }
 
-    // Extract the city name from the card title
+    // Stadt-Name aus card title extrahieren
     const city = (titleEl.textContent.toLowerCase());
-    const c = coords[city]; // Get coordinates from the coords object
+    const c = coords[city]; // Get Koordinaten von coords objekt
 
-    // If coordinates for the city are not defined, log a warning and skip
     if (!c) {
       console.warn(`No coordinates defined for city: ${city}. Skipping weather fetch.`);
       return;
@@ -181,27 +171,27 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = `cityDetails.html?city=${encodeURIComponent(city)}&lat=${c.lat}&lon=${c.lon}`;
     });
 
-    // Construct the URL for the Open-Meteo API
+    // url für Open-Meteo API konstruieren
     const url = new URL('https://api.open-meteo.com/v1/forecast');
     url.search = new URLSearchParams({
       latitude: c.lat,
       longitude: c.lon,
-      current_weather: 'true',              // Request current weather data
-      hourly: 'relativehumidity_2m', // Request hourly relative humidity at 2m
-      timezone: 'auto'               // Automatically detect timezone
+      current_weather: 'true',              // current Wetter-Daten anfordern
+      hourly: 'relativehumidity_2m', // stündliche Luftfeuchtigkeit in 2m Höhe anfordern
+      timezone: 'auto'               // automatisch Zeitzone detecten
     });
 
-    // Fetch weather data from the API
+    // Get Wetter-Daten von API
     fetch(url)
       .then(res => {
-        // Check if the HTTP response was successful
+        // Check, ob HTTP-Antwort erfolgreich
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
-        return res.json(); // Parse the JSON response
+        return res.json(); // Parse JSON Antwort
       })
       .then(data => {
-        // 1) Render Temperature
+        // 1) Render Temperatur
         const tempEl = card.querySelector('.temperaturText');
         const temperature = data.current_weather?.temperature;
         const tempUnit = localStorage.getItem("weatie_unit") || "C"; // Standard: Celsius
@@ -218,22 +208,22 @@ document.addEventListener('DOMContentLoaded', () => {
           if (tempEl) tempEl.textContent = 'N/A';
         }
 
-        // 2) Render Humidity
+        // 2) Render Luftfeuchtigkeit
         const humEl = card.querySelector('.cardText');
         const hourlyTimes = data.hourly?.time;
         const hourlyHumidities = data.hourly?.relativehumidity_2m;
         const currentTime = data.current_weather?.time;
 
         if (humEl && Array.isArray(hourlyTimes) && Array.isArray(hourlyHumidities) && currentTime) {
-          const currentTimestamp = new Date(currentTime).getTime(); // Convert current time to timestamp
+          const currentTimestamp = new Date(currentTime).getTime();
 
           let closestIdx = -1;
-          let minDiff = Infinity; // Initialize with a large difference
+          let minDiff = Infinity; // Mit großer Differenz initialisieren
 
-          // Iterate through hourly times to find the closest match
+          // stündlich wiederholen, um beste Übereinstimmung zu finden
           for (let i = 0; i < hourlyTimes.length; i++) {
             const hourlyTimestamp = new Date(hourlyTimes[i]).getTime();
-            const diff = Math.abs(currentTimestamp - hourlyTimestamp); // Calculate absolute difference
+            const diff = Math.abs(currentTimestamp - hourlyTimestamp); // Differenz berechnen
 
             if (diff < minDiff) {
               minDiff = diff;
@@ -241,8 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
 
-          // If a closest index is found and the difference is within a reasonable threshold (e.g., 1 hour = 3600000 ms)
-          if (closestIdx !== -1 && minDiff < 3600000) { // Check if time difference is less than an hour
+          // Wenn ein ähnlicher Index gefunden wird und die Differenz innerhalb eines angemessenen Schwellenwerts liegt (z.B. 1 h = 3600000 ms)
+          if (closestIdx !== -1 && minDiff < 3600000) { // Prüfen, ob Zeitunterschied weniger als eine Stunde ist
             humEl.textContent = `${hourlyHumidities[closestIdx]}%`;
           } else {
             humEl.textContent = `Hum. err`;
@@ -257,15 +247,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const weatherIconEl = card.querySelector('.weatherIcon');
         if (weatherIconEl) {
           const wc = data.current_weather.weathercode;
-          const time = data.current_weather.time;                     // e.g. "2025-06-20T14:00"
-          const hour = new Date(time).getHours();                     // local hour
+          const time = data.current_weather.time;                     // z.B. "2025-06-20T14:00"
+          const hour = new Date(time).getHours();                     // lokale Stunde
           const iconF = mapWeatherCodeToIcon(wc, hour);
           weatherIconEl.src = `../Images/weather_icons/${iconF}`;
           weatherIconEl.alt = `Weather icon ${iconF}`;
         }
       })
       .catch(err => {
-        // Catch any errors during the fetch operation
+        // Catch Fehler während der"Fetch-Operation"
         console.error(`Failed fetching weather for ${city}:`, err);
         const tempEl = card.querySelector('.temperaturText');
         const humEl = card.querySelector('.cardText');
