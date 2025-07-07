@@ -99,14 +99,14 @@ async function getWeatherInfo() {
   const queryLocation = `${c.lat},${c.lon}`; // WeatherAPI benutzt lat,lon format
 
   // Forecast API für current, stündlich, and täglich (next 7-14 days)
-  const forecastUrl = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${queryLocation}&days=10&aqi=no&alerts=no`;
+  const forecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${queryLocation}&days=10&aqi=no&alerts=no`;
 
   // Historical API für wetter von gestern
   const today = new Date();
   const yesterday = new Date(today);
   yesterday.setDate(today.getDate() - 1);
   const yesterdayDateString = yesterday.toISOString().split('T')[0]; // Format YYYY-MM-DD
-  const historicalUrl = `http://api.weatherapi.com/v1/history.json?key=${API_KEY}&q=${queryLocation}&dt=${yesterdayDateString}`;
+  const historicalUrl = `https://api.weatherapi.com/v1/history.json?key=${API_KEY}&q=${queryLocation}&dt=${yesterdayDateString}`;
 
   try {
     // Fetch historical data für gestern
