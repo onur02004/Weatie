@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const time = data.current_weather.time;                     // z.B. "2025-06-20T14:00"
           const hour = new Date(time).getHours();                     // lokale Stunde
           const iconF = mapWeatherCodeToIcon(wc, hour);
-          weatherIconEl.src = `../Images/weather_icons/${iconF}`;
+          weatherIconEl.src = `Images/weather_icons/${iconF}`;
           weatherIconEl.alt = `Weather icon ${iconF}`;
         }
       })
