@@ -279,11 +279,14 @@ main p {
   height: 40vh;
   width: 95%;
   background-color: red;
+
+  /*
   background-image: linear-gradient(25deg,
       #000000 0%,
       transparent 50%,
       #000000 100%),
     url('/Images/LocationBG/Weingarten.JPG');
+    */
   background-size: cover;
   background-position: center;
   border-radius: 30px;

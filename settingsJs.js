@@ -74,18 +74,18 @@ darkToggle.addEventListener("change", () => {
 });
 
 function frageNachStandort() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          function(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            alert("Dein Standort:\nBreitengrad: " + lat + "\nLängengrad: " + lon);
-          },
-          function(error) {
-            alert("Fehler bei der Standortabfrage: " + error.message);
-          }
-        );
-      } else {
-        alert("Geolocation wird von deinem Browser nicht unterstützt.");
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        alert("Dein Standort:\nBreitengrad: " + lat + "\nLängengrad: " + lon);
+      },
+      function (error) {
+        alert("Fehler bei der Standortabfrage: " + error.message);
       }
-    }
+    );
+  } else {
+    alert("Geolocation wird von deinem Browser nicht unterstützt.");
+  }
+}

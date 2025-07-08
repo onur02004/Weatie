@@ -1,30 +1,30 @@
 const toggleButton = document.getElementById('toggle-btn')
 const sidebar = document.getElementById('sidebar')
 
-  const coords = {
-    weingarten: { lat: 48.1716, lon: 9.5367 },
-    ravensburg: { lat: 47.7895, lon: 9.6125 },
-    stuttgart: { lat: 48.7758, lon: 9.1829 },
-    köln: { lat: 50.9375, lon: 6.9603 },
-    paris: { lat: 48.8566, lon: 2.3522 },
-    istanbul: { lat: 41.0082, lon: 28.9784 },
-    sydney: { lat: -33.8688, lon: 151.2093 },
-    'new york': { lat: 40.7128, lon: -74.0060 },
-    rome: { lat: 41.9028, lon: 12.4964 },
-    'st. petersburg': { lat: 59.9343, lon: 30.3351 }
-  };
+const coords = {
+  weingarten: { lat: 48.1716, lon: 9.5367 },
+  ravensburg: { lat: 47.7895, lon: 9.6125 },
+  stuttgart: { lat: 48.7758, lon: 9.1829 },
+  köln: { lat: 50.9375, lon: 6.9603 },
+  paris: { lat: 48.8566, lon: 2.3522 },
+  istanbul: { lat: 41.0082, lon: 28.9784 },
+  sydney: { lat: -33.8688, lon: 151.2093 },
+  'new york': { lat: 40.7128, lon: -74.0060 },
+  rome: { lat: 41.9028, lon: 12.4964 },
+  'st. petersburg': { lat: 59.9343, lon: 30.3351 }
+};
 
-  AOS.init();
-  checkWhiteMode();
+AOS.init();
+checkWhiteMode();
 
 function checkWhiteMode() {
-    const mode = localStorage.getItem("weatie_theme");
+  const mode = localStorage.getItem("weatie_theme");
 
-    if (mode === "light") {
-      document.body.classList.add("light-mode");
-    } else {
-      document.body.classList.remove("light-mode");
-    }
+  if (mode === "light") {
+    document.body.classList.add("light-mode");
+  } else {
+    document.body.classList.remove("light-mode");
+  }
 }
 
 function toggleSidebar() {
@@ -183,7 +183,7 @@ async function getWeatherInfo() {
 
     // Stündliche wetter card füllen!
     const hourlyWeatherContainer = document.querySelector('.hourlyWeatherDisplay'); // Changed selector
-if (hourlyWeatherContainer) {
+    if (hourlyWeatherContainer) {
       hourlyWeatherContainer.innerHTML = ''; // Clear bestehende cards
 
       // WeatherAPI forecast hat stündliche wetter Daten für heute & weitere tage
@@ -206,9 +206,9 @@ if (hourlyWeatherContainer) {
 
         const card = createHourlyWeatherCard(Math.round(hourData.temp_c), formattedHour, `https:${hourData.condition.icon}`);
         hourlyWeatherContainer.appendChild(card);
-        console.log(`Added hourly card for ${formattedHour}: ${Math.round(hourData.temp_c)}°C`);
+        console.log(`Added hourly card for ${formattedHour} (${date}): ${Math.round(hourData.temp_c)}°C`);
       });
-    }else{
+    } else {
       console.error('Hourly weather container not found. Err');
     }
 
@@ -259,4 +259,3 @@ function createHourlyWeatherCard(temperature, label, iconUrl) {
 
 // Initial calls
 initPage();
-getWeatherInfo();
