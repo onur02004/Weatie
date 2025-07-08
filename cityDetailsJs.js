@@ -81,7 +81,7 @@ function initPage() {
   //Changing the background image
   const backgroundImage = document.querySelector('.topContainer');
   const formattedCityName = formatCityNameForUrl(city);
-  const backgroundImageUrl = `Images/LocationBG/${formattedCityName}.JPG`;
+  const backgroundImageUrl = `Images/LocationBG/${formattedCityName}.jpg`;
   backgroundImage.style.backgroundImage = `linear-gradient(25deg, #000000 0%, transparent 50%, #000000 100%), url('${backgroundImageUrl}')`;
 
   getWeatherInfo();
