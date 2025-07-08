@@ -64,15 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!panels.length) return;
 
   const images = panels.map(p => p.style.backgroundImage);
-  let idx = 0;
-  let isMulti = window.innerWidth > 800;
+  let runde = 0;
+  let animationIsMulti = window.innerWidth > 800; //if desktop, top animation contains multiple images, else single image
   let timer;
 
   function cycleMulti() {
     // remove active aus all, add zu current
     panels.forEach(p => p.classList.remove('active'));
-    panels[idx].classList.add('active');
-    idx = (idx + 1) % panels.length;
+    panels[runde].classList.add('active');
+    runde = (runde + 1) % panels.length;
   }
 
   function cycleSingle() {
@@ -81,15 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
       p.style.display = i === 0 ? '' : 'none';
     });
     // update image vom ersten panel
-    panels[0].style.backgroundImage = images[idx];
-    idx = (idx + 1) % images.length;
+    panels[0].style.backgroundImage = images[runde];
+    runde = (runde + 1) % images.length;
   }
 
   function startCycling() {
     clearInterval(timer);
-    idx = 0;
+    runde = 0;
     if (window.innerWidth > 800) {
-      isMulti = true;
+      animationIsMulti = true;
       // Alle sichtbaren Panels wiederherstellen
       panels.forEach((p, i) => {
         p.style.display = '';
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cycleMulti();
       timer = setInterval(cycleMulti, 5000);
     } else {
-      isMulti = false;
+      animationIsMulti = false;
       panels.forEach((p, i) => p.style.display = i === 0 ? '' : 'none');
       cycleSingle();
       timer = setInterval(cycleSingle, 5000);
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // re-start, wenn 800px breakpoint überschritten
   window.addEventListener('resize', () => {
     const nowMulti = window.innerWidth > 800;
-    if (nowMulti !== isMulti) startCycling();
+    if (nowMulti !== animationIsMulti) startCycling();
   });
 
 
@@ -161,33 +161,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.card').forEach(card => {
     // Get title Element in current card
-    const titleEl = card.querySelector('.cardTitle');
+    const titleElement = card.querySelector('.cardTitle');
 
     // Wenn kein title Element oder "+" card, skip
     // trim() Methode entfernt Leerzeichen von beiden Enden eines Strings
-    if (!titleEl || titleEl.textContent.trim() === '+') {
+    if (!titleElement || titleElement.textContent.trim() === '+') {
       return;
     }
 
     // Stadt-Name aus card title extrahieren
-    const city = (titleEl.textContent.toLowerCase());
-    const c = coords[city]; // Get Koordinaten von coords objekt
+    const city = (titleElement.textContent.toLowerCase());
+    const cityCoordinates = coords[city]; // Get Koordinaten von coords objekt
 
-    if (!c) {
+    if (!cityCoordinates) {
       console.warn(`No coordinates defined for city: ${city}. Skipping weather fetch.`);
       return;
     }
 
     card.addEventListener('click', () => {
-      console.log(`Card clicked for city: ${city} (${c.lat}, ${c.lon})`);
-      window.location.href = `cityDetails.html?city=${encodeURIComponent(city)}&lat=${c.lat}&lon=${c.lon}`;
+      console.log(`Card clicked for city: ${city} (${cityCoordinates.lat}, ${cityCoordinates.lon})`);
+      window.location.href = `cityDetails.html?city=${encodeURIComponent(city)}&lat=${cityCoordinates.lat}&lon=${cityCoordinates.lon}`;
     });
 
     // url für Open-Meteo API konstruieren
     const url = new URL('https://api.open-meteo.com/v1/forecast');
     url.search = new URLSearchParams({
-      latitude: c.lat,
-      longitude: c.lon,
+      latitude: cityCoordinates.lat,
+      longitude: cityCoordinates.lon,
       current_weather: 'true',              // current Wetter-Daten anfordern
       hourly: 'relativehumidity_2m', // stündliche Luftfeuchtigkeit in 2m Höhe anfordern
       timezone: 'auto'               // automatisch Zeitzone detecten
@@ -204,32 +204,32 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then(data => {
         // 1) Render Temperatur
-        const tempEl = card.querySelector('.temperaturText');
+        const temperatruElement = card.querySelector('.temperaturText');
         const temperature = data.current_weather?.temperature;
         const tempUnit = localStorage.getItem("weatie_unit") || "C"; // Standard: Celsius
 
-        if (tempEl && typeof temperature === 'number') {
+        if (temperatruElement && typeof temperature === 'number') {
           if (tempUnit === "F") {
             const fahrenheit = (temperature * 9 / 5) + 32;
-            tempEl.textContent = `${Math.round(fahrenheit)}°F`;
+            temperatruElement.textContent = `${Math.round(fahrenheit)}°F`;
           } else {
-            tempEl.textContent = `${Math.round(temperature)}°C`;
+            temperatruElement.textContent = `${Math.round(temperature)}°C`;
           }
         } else {
           console.warn(`Temperature data missing or invalid for ${city}.`);
-          if (tempEl) tempEl.textContent = 'N/A';
+          if (temperatruElement) temperatruElement.textContent = 'N/A';
         }
 
         // 2) Render Luftfeuchtigkeit
-        const humEl = card.querySelector('.cardText');
+        const humidityElement = card.querySelector('.cardText');
         const hourlyTimes = data.hourly?.time;
         const hourlyHumidities = data.hourly?.relativehumidity_2m;
         const currentTime = data.current_weather?.time;
 
-        if (humEl && Array.isArray(hourlyTimes) && Array.isArray(hourlyHumidities) && currentTime) {
+        if (humidityElement && Array.isArray(hourlyTimes) && Array.isArray(hourlyHumidities) && currentTime) {
           const currentTimestamp = new Date(currentTime).getTime();
 
-          let closestIdx = -1;
+          let closestRunde = -1;
           let minDiff = Infinity; // Mit großer Differenz initialisieren
 
           // stündlich wiederholen, um beste Übereinstimmung zu finden
@@ -239,40 +239,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (diff < minDiff) {
               minDiff = diff;
-              closestIdx = i;
+              closestRunde = i;
             }
           }
 
           // Wenn ein ähnlicher Index gefunden wird und die Differenz innerhalb eines angemessenen Schwellenwerts liegt (z.B. 1 h = 3600000 ms)
-          if (closestIdx !== -1 && minDiff < 3600000) { // Prüfen, ob Zeitunterschied weniger als eine Stunde ist
-            humEl.textContent = `${hourlyHumidities[closestIdx]}%`;
+          if (closestRunde !== -1 && minDiff < 3600000) { // Prüfen, ob Zeitunterschied weniger als eine Stunde ist
+            humidityElement.textContent = `${hourlyHumidities[closestRunde]}%`;
           } else {
-            humEl.textContent = `Hum. err`;
+            humidityElement.textContent = `Hum. err`;
             console.warn(`No suitable hourly humidity data found for ${city} at ${currentTime}.`);
           }
         } else {
           console.warn(`Hourly humidity data missing or invalid for ${city}.`);
-          if (humEl) humEl.textContent = 'Humidity: N/A';
+          if (humidityElement) humidityElement.textContent = 'Humidity: N/A';
         }
 
         //3 Images
-        const weatherIconEl = card.querySelector('.weatherIcon');
-        if (weatherIconEl) {
+        const weatherIconElement = card.querySelector('.weatherIcon');
+        if (weatherIconElement) {
           const wc = data.current_weather.weathercode;
           const time = data.current_weather.time;                     // z.B. "2025-06-20T14:00"
           const hour = new Date(time).getHours();                     // lokale Stunde
           const iconF = mapWeatherCodeToIcon(wc, hour);
-          weatherIconEl.src = `Images/weather_icons/${iconF}`;
-          weatherIconEl.alt = `Weather icon ${iconF}`;
+          weatherIconElement.src = `Images/weather_icons/${iconF}`;
+          weatherIconElement.alt = `Weather icon ${iconF}`;
         }
       })
       .catch(err => {
         // Catch Fehler während der"Fetch-Operation"
         console.error(`Failed fetching weather for ${city}:`, err);
-        const tempEl = card.querySelector('.temperaturText');
-        const humEl = card.querySelector('.cardText');
-        if (tempEl) tempEl.textContent = 'Error';
-        if (humEl) humEl.textContent = 'Error';
+        const tempElement = card.querySelector('.temperaturText');
+        const humElement = card.querySelector('.cardText');
+        if (tempElement) tempElement.textContent = 'Error';
+        if (humElement) humElement.textContent = 'Error';
       });
   });
 });
@@ -282,9 +282,9 @@ function handleSearch() {
   const input = document.getElementById('city-input');
   const city = formatCityNameForUrl(input.value.trim());
   if (city) {
-    const c = coords[city];
-    if (c) {
-      window.location = `cityDetails.html?city=${encodeURIComponent(city)}&lat=${c.lat}&lon=${c.lon}`;
+    const cityCoords = coords[city];
+    if (cityCoords) {
+      window.location = `cityDetails.html?city=${encodeURIComponent(city)}&lat=${cityCoords.lat}&lon=${cityCoords.lon}`;
     } else {
       alert(`No coordinates defined for city: >${city}<. Please try another city.`);
     }

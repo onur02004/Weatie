@@ -59,18 +59,18 @@ function closeAllSubMenus() {
 
 const params = new URLSearchParams(window.location.search);
 const city = params.get('city');
-const c = coords[city];
+const cityCoords = coords[city];
 
 function formatCityNameForUrl(cityName) {
   return cityName.replace(/\s/g, '').replace(/\./g, '');
 }
 
 function initPage() {
-  if (!c) {
+  if (!cityCoords) {
     console.error('City coordinates not found');
     return;
   } else {
-    console.log(`Coordinates for ${city}:`, c);
+    console.log(`Coordinates for ${city}:`, cityCoords);
   }
 
 
@@ -88,7 +88,7 @@ function initPage() {
 }
 
 async function getWeatherInfo() {
-  if (!c) {
+  if (!cityCoords) {
     console.error('City coordinates not available for weather fetch.');
     return;
   }
@@ -96,7 +96,7 @@ async function getWeatherInfo() {
   // *** Replace mit WeatherAPI.com API Key ***
   const API_KEY = 'c0454540f64f4f209ef185743252906'; // Ger key von WEATHERAPI.COM
 
-  const queryLocation = `${c.lat},${c.lon}`; // WeatherAPI benutzt lat,lon format
+  const queryLocation = `${cityCoords.lat},${cityCoords.lon}`; // WeatherAPI benutzt lat,lon format
 
   // Forecast API für current, stündlich, and täglich (next 7-14 days)
   const forecastUrl = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${queryLocation}&days=10&aqi=no&alerts=no`;
