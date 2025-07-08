@@ -60,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (unit) document.getElementById("tempUnit").value = unit;
   if (dark === "true") document.getElementById("darkMode").checked = true;
-  if (cities) document.getElementById("favCities").value = cities;
 });
 
 darkToggle.addEventListener("change", () => {
